@@ -15,14 +15,14 @@
         
     常出现的面试题
     
-        1. 以下循环打印什么值
-        ```js
-            for(var i=0; i<6; i++){
-                setTimeout(function(){
-                    console.log(i)
-                },0)
-            }
-         ```
+1. 以下循环打印什么值
+```js
+    for(var i=0; i<6; i++){
+        setTimeout(function(){
+            console.log(i)
+        },0)
+    }
+ ```
             答案是：
                 6个6 
             原因： var i  出现变量提升
