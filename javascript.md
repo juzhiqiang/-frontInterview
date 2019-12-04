@@ -14,7 +14,7 @@
         
     常出现的面试题
     
-1. 以下循环打印什么值
+## 以下循环打印什么值
 ```js
     for(var i=0; i<6; i++){
         setTimeout(function(){
@@ -34,3 +34,21 @@ for(i=0;i<6;i++){...}
 ## 说说你对javascript是弱类型语言的理解?
 JavaScript 是弱类型语言，而且JavaScript 声明变量的时候并没有预先确定的类型，变量的类型就是其值的类型，也就是说变量当前的类型由其值所决定
     
+## javascript中强制类型转换是一个非常易出现bug的点，知道强制转换时候的规则吗？
+## 如何判断数据类型？怎么判断一个值到底是数组类型还是对象?
+三种方式，分别为 `typeof`、`instanceof` 和 `Object.prototype.toString()`
+1. typeof
+```js
+typeof 'seymoe'    // 'string'
+typeof true        // 'boolean'
+typeof 10          // 'number'
+typeof Symbol()    // 'symbol'
+typeof null        // 'object' 无法判定是否为 null
+typeof undefined   // 'undefined'
+typeof {}           // 'object'
+typeof []           // 'object'
+typeof(() => {})    // 'function'
+```
+    1. null 的判定有误差，得到的结果如果使用 typeof，null得到的结果是object
+    2. 操作符对对象类型及其子类型，例如函数（可调用对象）、数组（有序索引对象）等进行判定，则除了函数都会得到 object 的结果。
+由上面可以知道 typeof 可以用于比较简单的基础判断，遇到引用类型将判断不准确
