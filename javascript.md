@@ -53,3 +53,33 @@ typeof(() => {})    // 'function'
 >2. 操作符对对象类型及其子类型，例如函数（可调用对象）、数组（有序索引对象）等进行判定，则除了函数都会得到 object 的结果。
 
 由上面可以知道 typeof 可以用于比较简单的基础判断，遇到引用类型将判断不准确
+
+2. instanceof 通过 instanceof 操作符也可以对对象类型进行判定，其原理就是测试构造函数的  prototype 是否出现在被检测对象的原型链上。
+```js
+[] instanceof Array            // true
+({}) instanceof Object         // true
+(()=>{}) instanceof Function   // true
+```
+3. Object.prototype.toString()
+```js
+Object.prototype.toString.call({})              // '[object Object]'
+Object.prototype.toString.call([])              // '[object Array]'
+Object.prototype.toString.call(() => {})        // '[object Function]'
+Object.prototype.toString.call('seymoe')        // '[object String]'
+Object.prototype.toString.call(1)               // '[object Number]'
+Object.prototype.toString.call(true)            // '[object Boolean]'
+Object.prototype.toString.call(Symbol())        // '[object Symbol]'
+Object.prototype.toString.call(null)            // '[object Null]'
+Object.prototype.toString.call(undefined)       // '[object Undefined]'
+
+Object.prototype.toString.call(new Date())      // '[object Date]'
+Object.prototype.toString.call(Math)            // '[object Math]'
+Object.prototype.toString.call(new Set())       // '[object Set]'
+Object.prototype.toString.call(new WeakSet())   // '[object WeakSet]'
+Object.prototype.toString.call(new Map())       // '[object Map]'
+Object.prototype.toString.call(new WeakMap())   // '[object WeakMap]'
+```
+ 
+ * 该方法本质就是依托Object.prototype.toString() 方法得到对象内部属性 [[Class]]
+* 传入原始类型却能够判定出结果是因为对值进行了包装
+* null 和 undefined 能够输出结果是内部实现有做处理
